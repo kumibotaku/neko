@@ -1,0 +1,112 @@
+/* 
+header{
+  background-color: burlywood;
+} */
+
+.content-top ons-button{
+  width: 90%;
+  height:3em;
+  display: block;
+  margin: 10px auto;
+  padding: 10px ;
+}
+
+.content-top > img{
+  width: 80%;
+  
+}
+
+.explanations{
+  background-color:wheat; 
+  position: relative;
+}
+
+.explanations > h1{
+  margin: 0 0 12px;
+  padding: 12px 0 0;
+}
+
+
+.explanations > img{
+  width: 80%;
+  margin: 0 auto;
+  opacity: 0.3;
+}
+
+.explanations > p{
+  width:80%;
+  margin: 0 auto;
+  background-color:wheat; 
+}
+
+
+.explanation > h2{
+  margin: 0 0 12px;
+  padding: 12px 0 0;
+}
+
+.explanation{
+  width: 80%;
+  margin: 0 auto;
+
+}
+
+.explanation > p{
+  font-size: 16px;
+}
+
+
+
+
+.explanation{
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  left: 30px;
+  top: 70px;
+  z-index: 100;
+}
+
+header > img{
+  width:calc( 100% - 200px );
+  float: left;
+}
+
+.selector{
+  width: 200px;  
+  height: 200px;
+  /* background-image: url("../images/Nikukyu.png"); */
+  margin: 84px 0 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+
+}
+
+
+
+.btn{
+  width: 40%;
+  height: 40%;
+  border-radius: 48%;
+  background-color: pink;
+  border-color: black;
+  border-width:4px;
+  font-size: 16px;
+
+}
+
+.target3{
+  width: 60%;
+  height: 60%;
+}
+
+.btn:focus{
+  outline: 0;
+}
+
+.btn:active{
+  opacity: 0.3;
+}
