@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="components/main.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+   document.addEventListener('init', function(event) {
+    var page = event.target;
+
+    if (page.matches('#first-page')) {
+        page.querySelector('#push-button2').onclick = function() {
+          document.querySelector('#navigator').pushPage('page2.html');
+        };
+    } else if (page.matches('#second-page')) {
+      page.querySelector('#pop-button').onclick = function() {
+        document.querySelector('#navigator').popPage();
+      };
+    }  
+
+// トップ画面からみりおにゃあへ
+//みりおにゃあからトップ画面へ
+    if (page.matches('#first-page')) {
+      page.querySelector('#push-button4').onclick = function() {
+        document.querySelector('#navigator').pushPage('page4.html');
+      };
+    } else if (page.matches('#fourth-page')) {
+      page.querySelector('#pop-button').onclick = function() {
+        document.querySelector('#navigator').popPage();
+      };
+    }  
+// トップ画面からにゃん経衰弱へ
+//にゃん経衰弱からトップ画面へ
+    if (page.matches('#first-page')) {
+      page.querySelector('#push-button5').onclick = function() {
+        document.querySelector('#navigator').pushPage('page5.html');
+      };
+    } else if (page.matches('#fifth-page')) {
+      page.querySelector('#pop-button').onclick = function() {
+        document.querySelector('#navigator').popPage();
+      };
+    }  
+// -----------
+    if (page.matches('#second-page')) {
+      page.querySelector('#push-button').onclick = function() {
+        document.querySelector('#navigator').pushPage('page3.html');
+       };
+    // } else if (page.matches('#third-page')) {
+    //    page.querySelector('#replace-button').onclick = function(event) {
+    //     document.querySelector('#navigator').resetToPage("page1.html");
+    //     };  
+    //   }
+    }  else if (page.matches('#third-page')) {
+      randomName();
+      document.getElementById('section2').classList.remove('hidden');
+      document.getElementById('button1').addEventListener('click',()=>{//スタート押したときの操作
+        document.getElementById('section2').classList.add('hidden');
+        
+        startInterval();//->main.js  
+      });
+
+      answers.forEach((answer)=>{
+        
+        document.getElementById(`answer${answer}`).addEventListener('click',()=>{//answer(number)を押したときの操作
+              document.getElementById('section1').classList.remove('hidden');
+          });
+      });
+
+        page.querySelector('#push-button').onclick = function() {
+          document.querySelector('#navigator').pushPage("page6.html");
+        };  
+      }
+      // -----------
+      if (page.matches('#sixth-page')) {
+        document.getElementById('answerBox').textContent = document.getElementById('selectedAnswer') ;
+
+        page.querySelector('#reset-button').onclick = function(event) {
+          // document.querySelector('#navigator').resetToPage("page1.html");
+          location.reload();
+        };  
+      }
+    });
+    
+    
+    if (ons.platform.isIPhoneX()) {
+      document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+      document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+    }
+    
+    
+  </script>
+</head>
+<body>
+
+
+  <ons-navigator id="navigator" page="page1.html"></ons-navigator>
+  <ons-template id="page1.html">
+    <ons-page id="first-page">
+      <ons-toolbar>
+        <div class="center">ねこゲーム</div>
+      </ons-toolbar>
+
+        <div class="content-top" style="text-align: center">
+          <h1 style="margin: 0; padding: 12px 0 0;">ねこゲーム</h1>
+          <p>ねこたちに癒されてくださいお願いします。</p>
+          <img src="css/images/scottish-fold.png">
+          <ons-button id="push-button2" >モザイクネコ</ons-button>
+          <ons-button id="push-button4">クイズ！ミリオにゃあ</ons-button>
+          <ons-button id="push-button5">にゃん経衰弱</ons-button>
+        </div>
+      </ons-page>
+  </ons-template>
+
+  <ons-template id="page2.html">
+    <ons-page id="second-page">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>TOP</ons-back-button></div>
+        <div class="center">Mosaic Cat</div>
+      </ons-toolbar>
+
+      <div class="content-top" style="text-align: center">
+          <div class="explanations">
+            <h1 style="padding: 12px; margin: 0px;" >モザイクネコ</h1>
+            <div class="explanation" >      
+              <h2>ゲーム説明</h2>
+              <p>モザイクタイルが剥がれていく中ネコの品種を当てるゲームです。
+              <br>タイムアタックゲームなので正解までにかかった時間を表示します。
+              <br>クリアできれば褒められます。</p>
+            </div> 
+            <img src="css/images/mainecoon.png" >  
+          </div> 
+
+        <ons-button id="push-button">START!</ons-button>
+        <ons-button id="pop-button">TOPに戻る</ons-button>
+      </div>
+    </ons-page>
+  </ons-template>
+<!-- 2020年6月9日 -->
+  <ons-template id="page3.html">
+    <ons-page id="third-page">
+      <ons-toolbar>
+        <div class="left"></div>
+        <div class="center"></div>
+      </ons-toolbar>
+
+      <div class="content-top" style="text-align: center">
+        <header>
+          <p id="h">Q.この猫の品種はどれでしょう？</p>
+        </header>
+        <!-- <input id = 'button1' type="button" value = "ゲームスタート！" onclick="this.disabled=true;"> -->
+        <div class = "timer">Time Limit:  <span id="timer">30</span></div>
+        
+        <div class="game1-container">
+          <img src="css/images/mainecoon.png">
+          <div class="seats">
+            <div class="seat " id="s1" ></div>
+            <div class="seat " id="s2" ></div>
+            <div class="seat " id="s3" ></div>
+            <div class="seat " id="s4" ></div>
+            <div class="seat " id="s5" ></div>
+            <div class="seat " id="s6" ></div>
+            <div class="seat " id="s7" ></div>
+            <div class="seat " id="s8" ></div>
+            <div class="seat " id="s9" ></div>
+            <div class="seat " id="s10" ></div>
+            <div class="seat " id="s11" ></div>
+            <div class="seat " id="s12" ></div>
+            <div class="seat " id="s13" ></div>
+            <div class="seat " id="s14" ></div>
+            <div class="seat " id="s15" ></div>
+            <div class="seat " id="s16" ></div>
+          </div>
+        </div>
+        
+        <div class="answers">
+            <p>以下の選択肢から一つ選んでください</p>
+            <div class="container">
+              <button class="btn" id="answer1">Selector1</button>
+              <button class="btn" id="answer2">Selector2</button>
+              <button class="btn" id="answer3">Selector3</button>
+              <button class="btn" id="answer4">Selector4</button>
+              <!-- <button disabled="true" class="btn" id="answer1">Selector1</button>
+                <button disabled="true" class="btn" id="answer2">Selector2</button>
+                <button disabled="true" class="btn" id="answer3">Selector3</button>
+                <button disabled="true" class="btn" id="answer4">Selector4</button> -->
+              </div>
+            </div>
+            
+            <!-- 開始前ポップ -->
+            <section class="hidden" id="section2">
+              <div class="popup-container">
+                <div class="button-background"></div>
+                <div class="info-documents">準備OK?</div>
+                <input id = 'button1' type="button" value = "ゲームスタート！" style="position: relative; top: 300px; left: 0; right: 0;" onclick="this.disabled=true;">
+                <div class="black-background"></div>
+              </div>
+              
+            </section>
+            <!-- 終了ポップ -->
+            <section class="hidden" id="section1">
+              <div class="popup-container">
+                <div class="button-background"></div>
+                <div class="info-documents">既に癒されましたね。<p>さあ答え合わせです。</p></div>
+                <ons-button id="push-button" style="position: relative; top: 300px; left: 0; right: 0;">次のページへ</ons-button>
+                <div class="black-background"></div>
+              </div>
+              
+            </section>
+          <!-- <div class="options">
+            <button class="btn" id ="btn1">①</button>   
+            <button class="btn" id ="btn2">②</button>   
+            <button class="btn" id ="btn3">③</button>   
+            <button class="btn" id ="btn4" onclick="alert('正解')">④</button>    -->
+          </div>
+
+        <script>
+          //ここに書いても実行できない、、、
+        </script>
+      <!-- </div> -->
+    </ons-page>
+  </ons-template>
+<!-- 2020年6月9日end -->
+
+  <ons-template id="page4.html">
+    <ons-page id="fourth-page">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+        <div class="center">Page 4</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <p>This is the fourth page.</p>
+        <ons-button id="pop-button">Pop page1</ons-button>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="page5.html">
+    <ons-page id="fifth-page">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+        <div class="center">Page 5</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <p>This is the fifth page.</p>
+        <ons-button id="pop-button">Pop page1</ons-button>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="page6.html">
+    <ons-page id="sixth-page">
+      <ons-toolbar>
+        <!-- <div class="left"><ons-back-button>Back Page</ons-back-button></div> -->
+        <div class="center">結果画面</div>
+      </ons-toolbar>
+
+      <div class="content-top" style="text-align: center">
+        <h1>結果発表！</h1>
+        <p>答えは(ネコの種類)でした！</p>
+        <div class="resultTime">
+          <div >残り時間: <span id="resultTime" ></span></div>
+          <div class="selectedAnswer">選択された答え:<span id="answerBox"></span></div>
+        </div>
+        <img src="css/images/munchkin.png">
+        <p>一言コメント<p>可愛いですね。</p></p>
+
+        <ons-button id="reset-button">ToP page</ons-button>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="page7.html">
+    <ons-page id="seventh-page">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back Page </ons-back-button></div>
+        <div class="center">Page 7</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <p>This is the seventh page.</p>
+        <!-- <ons-button id="pop-button">Pop page1</ons-button> -->
+      </div>
+    </ons-page>
+  </ons-template>
+</body>
+</html>
