@@ -5,8 +5,8 @@ var d;
 var endT;
 var cnt;
 var repeatFlag = true;//true　初期値　false　止めないため
-
-
+var resultTime;
+var answerFlag = true;
 
 var numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];//numbers のランダム配列
 var answers = [1,2,3,4];//answers のランダム配列
@@ -22,22 +22,69 @@ answers = shuffle(answers);
 // console.log(numbers );
 // console.log(answers );
 
-var names = ["ねこ1","ねこ2","ねこ3","ねこ4"];//選択肢のランダム配列
-// console.log(names );
-// console.log(names[answers[0]-1]); 
-// console.log(names[answers[1]-1]); 
-// console.log(names[answers[2]-1]); 
-// console.log(names[answers[3]-1]); 
+const relations = {
+  img1:
+  'css/images/american-shorthair.png'
+  ,
+  answers1:[
+    'アメリカンショートヘア',
+    'チンチラ',
+    'ノルウェージャンフォレストキャット',
+    'スコティッシュフォールド',
+  ],
+  Comment1:
+    'アメリカンショートヘアっていいですよね'
+  ,
+  img2:
+  'css/images/bengal.png'
+  ,
+  answers2:[
+    'ベンガル',
+    'ブリティッシュショートヘア',
+    'ラグドール',
+    'ミヌエット',
+  ],
+  Comment2:
+    'ベンガルってやっぱいいですよね'
+  ,
+  img3:
+  'css/images/british-shorthair.png'
+  ,
+  answers3:[
+    'ノルウェージャンフォレストキャット',
+    'ペルシャ',
+    'ラガマフィン',
+    'ロシアンブルー',
+  ],
+  Comment3:
+    'ノルウェージャンフォレストキャット、、、噛まずに言えますか？'
+  ,
+}
+var questionNumber = Math.floor( Math.random() * (Object.keys(relations).length / 3)  ) + 1;;//問題数に合わせてランダムに決める
+console.log(questionNumber);
+//ランダムに1－3を決めれば画像と答え群が一致するようにする
+var names = relations[`answers${questionNumber}`] ;
+var image = relations[`img${questionNumber}`] ;
+var comment = relations[`Comment${questionNumber}`] ;
+var l = names[0];
+console.log(names);
+console.log(image);
+console.log(comment);
+
+console.log(names[0]);
+// var names = ["ねこ1","ねこ2","ねこ3","ねこ4"];
+
+// document.getElementById('questionImg').setAttribute('src',`${image}`);
 
 names = answers.map((answer)=>{
   return names[answer-1];
 });
 // console.log(names );
 function randomName (){
-  document.getElementById('answer1').textContent=`name: ${names[0]}`;
-  document.getElementById('answer2').textContent=`name: ${names[1]}`;
-  document.getElementById('answer3').textContent=`name: ${names[2]}`;
-  document.getElementById('answer4').textContent=`name: ${names[3]}`;
+  document.getElementById('answer1').textContent=`${names[0]}`;
+  document.getElementById('answer2').textContent=`${names[1]}`;
+  document.getElementById('answer3').textContent=`${names[2]}`;
+  document.getElementById('answer4').textContent=`${names[3]}`;
 }
 
 
@@ -45,29 +92,39 @@ function randomName (){
 
 
 function startInterval(){
-  console.log('作動している');
+  // document.getElementsByClassName('btn').setAttribute('disabled','true');
+  // console.log('作動している');
   sec = 30;
   d = new Date();//開始日時
   endT = new Date(d.getTime() + sec *1000 );//終了日時
   cnt = sec ;
+  // document.getElementsByClassName('btn').setAttribute('disabled','false');
+  
   id = setInterval(()=>{ 
     cnt--; 
-    document.getElementById('timer').innerHTML = `${cnt}` ;
     console.log(cnt);  
+      // if(cnt < 27 ){
+
+    document.getElementById('timer').innerHTML = `${cnt}` ;
     d = new Date();
+    console.log(document.getElementById('answer1').getAttribute('disabled'));
     if(d.getTime()  >= endT.getTime()){
-      clearInterval(id);
       document.getElementById('section1').classList.remove('hidden');
       console.log("終了！");
       document.getElementById('timer').innerHTML = 0 ;
+      answerFlag = false;
+      clearInterval(id);
     }
     
     
     document.getElementById('answer1').onclick = function(){
       document.getElementById('answer1').setAttribute('id','selectedAnswer');
-
-
+      
+      
       if(repeatFlag){
+        resultTime = Math.floor((endT.getTime() -  d.getTime()) / 1000 );
+        console.log(resultTime);
+        
         clearInterval(id);  
         repeatFlag = false;
       } else{
@@ -77,6 +134,8 @@ function startInterval(){
     document.getElementById('answer2').onclick = function(){
       document.getElementById('answer2').setAttribute('id','selectedAnswer');
       if(repeatFlag){
+        resultTime = Math.floor((endT.getTime() -  d.getTime()) / 1000 );
+        console.log(resultTime);
         clearInterval(id);  
         repeatFlag = false;
       } else{
@@ -86,6 +145,8 @@ function startInterval(){
     document.getElementById('answer3').onclick = function(){
       document.getElementById('answer3').setAttribute('id','selectedAnswer');
       if(repeatFlag){
+        resultTime = Math.floor((endT.getTime() -  d.getTime()) / 1000 );
+        console.log(resultTime);
         clearInterval(id);  
         repeatFlag = false;
       } else{
@@ -95,6 +156,8 @@ function startInterval(){
     document.getElementById('answer4').onclick = function(){
       document.getElementById('answer4').setAttribute('id','selectedAnswer');
       if(repeatFlag){
+        resultTime = Math.floor((endT.getTime() -  d.getTime()) / 1000 );
+        console.log(resultTime);
         clearInterval(id);  
         repeatFlag = false;
       } else{
