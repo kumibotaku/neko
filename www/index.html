@@ -6,41 +6,87 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
   <script src="components/main.js"></script>
+  <script src="components/game2.js"></script>
   <script src="lib/onsenui/js/onsenui.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700" rel="stylesheet">
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/style.css">
-
+  
   <script>
-   document.addEventListener('init', function(event) {
-    var page = event.target;
-
-    if (page.matches('#first-page')) {
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+      
+      if (page.matches('#first-page')) {
         page.querySelector('#push-button2').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
         };
-    } else if (page.matches('#second-page')) {
-      page.querySelector('#pop-button').onclick = function() {
-        document.querySelector('#navigator').popPage();
-      };
-    }  
+      } else if (page.matches('#second-page')) {
+        page.querySelector('#pop-button').onclick = function() {
+          document.querySelector('#navigator').popPage();
+        };
+      }  
+      
+      // トップ画面からみりおにゃあへ
+      //みりおにゃあからトップ画面へ
+      if (page.matches('#first-page')) {
+        page.querySelector('#push-button4').onclick = function() {
+          document.querySelector('#navigator').pushPage('page4.html');
+        };
+      } else if (page.matches('#fourth-page')) {
+        page.querySelector('#pop-button').onclick = function() {
+          document.querySelector('#navigator').popPage();
+        };
+      }  
+      // みりおにゃあ説明画面から問題画面へ
+      
+      if (page.matches('#fourth-page')) {
+        page.querySelector('#push-button').onclick = function() {
+          document.querySelector('#navigator').pushPage('page7.html');
+        };
+      }
+      
+      // みりおにゃあ問題画面から結果画面へ check!!!
+      
+      if (page.matches('#seventh-page')) {
+        console.log(document.getElementById('section3'));
+        document.getElementById('section3').classList.remove('hidden');
+        document.getElementById('button3').addEventListener('click',()=>{//スタート押したときの操作
+          // setInterval();
+          document.getElementById('section3').classList.add('hidden');          
+          console.log(page.querySelector('#pop-button'));
+          page.querySelector('#pop-button').onclick = function() {
+            document.querySelector('#navigator').pushPage('page8.html');
+          };
+        });
+                  
+        answers.forEach((answer)=>{
+          //answer(number)を押したときの操作
+          document.getElementById(`answer${answer}`).addEventListener('click',()=>{
+            if(a < 4){
+              a++;
+              questionChange();//問題を移行するメソッド
+            }else if(a == 4){
+              document.getElementById('section4').classList.remove('hidden');
+              //timerもfinishさせる
+            }
+          });
+        });
+      }
+// みりおにゃあ結果画面からトップ画面へ
 
-// トップ画面からみりおにゃあへ
-//みりおにゃあからトップ画面へ
-    if (page.matches('#first-page')) {
-      page.querySelector('#push-button4').onclick = function() {
-        document.querySelector('#navigator').pushPage('page4.html');
-      };
-    } else if (page.matches('#fourth-page')) {
-      page.querySelector('#pop-button').onclick = function() {
-        document.querySelector('#navigator').popPage();
-      };
-    }  
-// トップ画面からにゃん経衰弱へ
+    if (page.matches('#eighth-page')) {
+      console.log(page.querySelector('#pop-button'));
+      page.querySelector('#pop-button').onclick = function(event) {
+        // document.querySelector('#navigator').resetToPage('page1.html');
+        location.reload();
+       };
+      }
+
+      // トップ画面からにゃん経衰弱へ
 //にゃん経衰弱からトップ画面へ
-    if (page.matches('#first-page')) {
+if (page.matches('#first-page')) {
       page.querySelector('#push-button5').onclick = function() {
         document.querySelector('#navigator').pushPage('page5.html');
       };
@@ -49,66 +95,65 @@
         document.querySelector('#navigator').popPage();
       };
     }  
-// ---モザイクネコ問題画面--------
-    if (page.matches('#second-page')) {
-      page.querySelector('#push-button').onclick = function() {
-        document.querySelector('#navigator').pushPage('page3.html');
-       };
-    // } else if (page.matches('#third-page')) {
-      //    page.querySelector('#replace-button').onclick = function(event) {
-        //     document.querySelector('#navigator').resetToPage("page1.html");
-        //     };  
-        //   }
-      }  else if (page.matches('#third-page')) {
-        randomName();
-        document.getElementById('questionImg').setAttribute('src',`${image}`);
-        
-        document.getElementById('section2').classList.remove('hidden');
-        document.getElementById('button1').addEventListener('click',()=>{//スタート押したときの操作
-          document.getElementById('section2').classList.add('hidden');
+    
+    // ---モザイクネコ問題画面--------
+        if (page.matches('#second-page')) {
+          page.querySelector('#push-button').onclick = function() {
+            document.querySelector('#navigator').pushPage('page3.html');
+           };
+        // } else if (page.matches('#third-page')) {
+          //    page.querySelector('#replace-button').onclick = function(event) {
+            //     document.querySelector('#navigator').resetToPage("page1.html");
+            //     };  
+            //   }
+          }  else if (page.matches('#third-page')) {
+            randomName();
+            document.getElementById('questionImg').setAttribute('src',`${image}`);
+            
+            document.getElementById('section2').classList.remove('hidden');
+            document.getElementById('button1').addEventListener('click',()=>{//スタート押したときの操作
+              document.getElementById('section2').classList.add('hidden');          
+            startInterval();//->main.js  
+          });
           
-        startInterval();//->main.js  
+          answers.forEach((answer)=>{
+            
+            document.getElementById(`answer${answer}`).addEventListener('click',()=>{//answer(number)を押したときの操作
+              document.getElementById('section1').classList.remove('hidden');
+            });
+          });
+          
+          page.querySelector('#push-button').onclick = function() {
+            document.querySelector('#navigator').pushPage("page6.html");
+          };  
+        }
+        // --モザイクネコ結果画面---------
+        if (page.matches('#sixth-page')) {
+          console.log(answerFlag);
+          if(answerFlag){
+            document.getElementById('answerBox').innerHTML = document.getElementById('selectedAnswer').innerHTML ;
+            document.getElementById('resultTime').innerHTML = `${resultTime}` ;
+          } else{
+            document.getElementById('answerBox').innerHTML = '' ;
+            document.getElementById('resultTime').innerHTML = '時間切れ' ;
+          }
+          document.getElementById('catName').innerText = l ;//正解の品種を書く
+          document.getElementById('questionImg2').setAttribute('src',`${image}`);//答えの写真を載せる
+          document.getElementById('catComment').innerHTML= comment ;
+          page.querySelector('#reset-button').onclick = function(event) {
+            // document.querySelector('#navigator').resetToPage("page1.html");
+            location.reload();
+          };  
+        }
       });
       
-      answers.forEach((answer)=>{
-        
-        document.getElementById(`answer${answer}`).addEventListener('click',()=>{//answer(number)を押したときの操作
-          document.getElementById('section1').classList.remove('hidden');
-        });
-      });
-      
-      page.querySelector('#push-button').onclick = function() {
-        document.querySelector('#navigator').pushPage("page6.html");
-      };  
-    }
-    // --モザイクネコ結果画面---------
-    if (page.matches('#sixth-page')) {
-      console.log(answerFlag);
-      if(answerFlag){
-        document.getElementById('answerBox').innerHTML = document.getElementById('selectedAnswer').innerHTML ;
-        document.getElementById('resultTime').innerHTML = `${resultTime}` ;
-      } else{
-        document.getElementById('answerBox').innerHTML = '' ;
-        document.getElementById('resultTime').innerHTML = '時間切れ' ;
-      }
-      document.getElementById('catName').innerText = l ;//正解の品種を書く
-      document.getElementById('questionImg2').setAttribute('src',`${image}`);//答えの写真を載せる
-      document.getElementById('catComment').innerHTML= comment ;
-      page.querySelector('#reset-button').onclick = function(event) {
-        // document.querySelector('#navigator').resetToPage("page1.html");
-        location.reload();
-      };  
-    }
-  });
-  
-  
-  if (ons.platform.isIPhoneX()) {
+    if (ons.platform.isIPhoneX()) {
       document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
       document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
     }
     
     
-  </script>
+    </script>
 </head>
 <body>
   <ons-navigator id="navigator" page="page1.html"></ons-navigator>
@@ -226,71 +271,122 @@
       <!-- </div> -->
     </ons-page>
   </ons-template>
-<!-- 2020年6月9日end -->
-
+  <!-- 2020年6月9日end -->
+  
+  <!-- みりおにゃあ説明画面 -->
   <ons-template id="page4.html">
     <ons-page id="fourth-page">
-      <!-- <ons-toolbar> -->
-        <div class="left"><ons-back-button>Page 1</ons-back-button></div>
-        <div class="center">Page 4</div>
-      </ons-toolbar>
 
       <div class="content-top" style="text-align: center">
-        <p>This is the fourth page.</p>
-        <ons-button id="pop-button">Pop page1</ons-button>
-      </div>
+        <div class="explanations">
+          <h1 style="padding: 12px; margin: 0px;" >クイズ！ミリオにゃあ</h1>
+          <div class="explanation" >      
+            <h2>ゲーム説明</h2>
+            <p>5種類のネコに関する質問を次々と当てていくゲームです。
+            <br>タイムアタックゲームなので正解までにかかった時間を表示します。
+            <br>クリアできれば褒められます。</p>
+          </div> 
+          <img src="css/images/siberian.png" >  
+        </div> 
+        <ons-button class="btn" id="push-button">START!</ons-button>
+        <ons-button class="btn" id="pop-button">TOPに戻る</ons-button>
+       </div>
     </ons-page>
   </ons-template>
-
-  <ons-template id="page5.html">
-    <ons-page id="fifth-page">
-      <ons-toolbar>
-        <div class="left"><ons-back-button>Page 1</ons-back-button></div>
-        <div class="center">Page 5</div>
-      </ons-toolbar>
-
-      <div class="content-top" style="text-align: center">
-        <p>This is the fifth page.</p>
-        <ons-button id="pop-button">Pop page1</ons-button>
-      </div>
-    </ons-page>
-  </ons-template>
-
-<!-- モザイクネコの結果画面--ページ6 -->
-  <ons-template id="page6.html">
-    <ons-page id="sixth-page">
-      <!-- <ons-toolbar> -->
-        <!-- <div class="left"><ons-back-button>Back Page</ons-back-button></div> -->
-        <div class="center">結果画面</div>
-      </ons-toolbar>
-
-      <div class="content-top" style="text-align: center">
-        <h1>結果発表！</h1>
-        <p>答えは<span id="catName" >neko</span>でした！</p>
-        <div class="resultTime">
-          <div >残り時間: <span id="resultTime" ></span></div>
-          <div class="selectedAnswer">選択された答え:<span id="answerBox"></span></div>
-        </div>
-        <img id="questionImg2" src="css/images/hatena.jpg">
-        <p>一言コメント<p id="catComment">可愛いですね。</p></p>
-
-        <ons-button class="btn" id="reset-button">ToP page</ons-button>
-      </div>
-    </ons-page>
-  </ons-template>
-
+  
+  <!-- みりおにゃあ問題画面 -->
   <ons-template id="page7.html">
     <ons-page id="seventh-page">
       <!-- <ons-toolbar> -->
-        <div class="left"><ons-back-button>Back Page </ons-back-button></div>
-        <div class="center">Page 7</div>
-      </ons-toolbar>
-
+        <!-- <div class="left"><ons-back-button>Back Page </ons-back-button></div>
+          <div class="center">Page 7</div>
+      </ons-toolbar> -->
+      
       <div class="content-top" style="text-align: center">
-        <p>This is the seventh page.</p>
-        <!-- <ons-button id="pop-button">Pop page1</ons-button> -->
+        <h1>問題</h1> 
+        <p>経過時間：<span id="passedTime"></span></p>
+        <h2>問題1</h2>
+        <p id="questions2">ねこがゴロゴロ鳴いているときはどんな時？</p>
+        <div class="answers">
+          <p>以下の選択肢から一つ選んでください</p>
+          <div class="container">
+            <button class="btn"   id="answer1">Selector1</button>
+            <button class="btn"   id="answer2">Selector2</button>
+            <button class="btn"   id="answer3">Selector3</button>
+            <button class="btn"   id="answer4">Selector4</button>
+          </div>
+        </div>
+         <!-- 開始前ポップ -->
+         <section class="hidden" id="section3">
+          <div class="popup-container">
+            <div class="button-background"></div>
+            <div class="info-documents">準備OK?</div>
+            <input class="btn" id = 'button3' type="button" value = "ゲームスタート！" style="position: relative; top: 300px; left: 0; right: 0;" onclick="this.disabled=true;">
+            <div class="black-background"></div>
+          </div>
+        </section>
+        <!-- 終了ポップ -->
+        <section class="hidden" id="section4">
+          <div class="popup-container">
+            <div class="button-background"></div>
+            <div class="info-documents">既に癒されましたね。<p>さあ答え合わせです。</p></div>
+            <ons-button class="btn" id="pop-button" style="position: relative; top: 300px; left: 0; right: 0;">次のページへ</ons-button>
+            <div class="black-background"></div>
+          </div>
+        </section>  
       </div>
     </ons-page>
   </ons-template>
+
+  <!-- みりおにゃあ結果画面 -->
+  <ons-template id="page8.html">
+    <ons-page id="eighth-page">
+      
+      <div class="content-top" style="text-align: center">
+        <p>みりおにゃあ結果画面</p>
+        <ons-button class="btn" id="pop-button">トップへ戻る</ons-button>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <!-- にゃん経衰弱説明画面 -->
+    <ons-template id="page5.html">
+      <ons-page id="fifth-page">
+        <!-- <ons-toolbar>
+          <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+          <div class="center">Page 5</div>
+        </ons-toolbar> -->
+  
+        <div class="content-top" style="text-align: center">
+          <p>This is the fifth page.</p>
+          <ons-button id="pop-button">Pop page1</ons-button>
+        </div>
+      </ons-page>
+    </ons-template>
+  
+  <!-- モザイクネコの結果画面--ページ6 -->
+    <ons-template id="page6.html">
+      <ons-page id="sixth-page">
+        <!-- <ons-toolbar> -->
+          <!-- <div class="left"><ons-back-button>Back Page</ons-back-button></div> -->
+          <!-- <div class="center">結果画面</div>
+        </ons-toolbar> -->
+  
+        <div class="content-top" style="text-align: center">
+          <h1>結果発表！</h1>
+          <p>答えは<span id="catName" >neko</span>でした！</p>
+          <div class="resultTime">
+            <div >残り時間: <span id="resultTime" ></span></div>
+            <div class="selectedAnswer">選択された答え:<span id="answerBox"></span></div>
+          </div>
+          <img id="questionImg2" src="css/images/hatena.jpg">
+          <p>一言コメント<p id="catComment">可愛いですね。</p></p>
+  
+          <ons-button class="btn" id="reset-button">ToP page</ons-button>
+        </div>
+      </ons-page>
+    </ons-template>
+  
+
 </body>
 </html>
