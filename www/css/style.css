@@ -484,3 +484,8 @@ header > img{
   bottom: 25px;
 }
 /* ページ③ */
+
+#catComment{
+  width: 80%;
+  margin: 0 auto;
+}
