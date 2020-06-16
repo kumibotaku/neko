@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="css/style.css">
   
   <script>
+    var score  =0 ;
+    var missed  =5 ;
+
     document.addEventListener('init', function(event) {
       var page = event.target;
       
@@ -49,74 +52,79 @@
       
       // みりおにゃあ問題画面から結果画面へ check!!!
       
+      
       if (page.matches('#seventh-page')) {
+        // var missed =0 ;          
         // console.log(document.getElementById('answer1'));
-//         var score = 0 ;
-//         var missed = 0 ;
-// // console.log(document.getElementById('answer1'));
-
-//         document.getElementById('answer1').addEventListener('click',()=>{
-//           score++;
-//         });
-//         document.getElementById('answer2').addEventListener('click',()=>{
-//           missed++;
-//         });
-//         document.getElementById('answer3').addEventListener('click',()=>{
-//           missed++;
-//         });
-//         document.getElementById('answer4').addEventListener('click',()=>{
-//           missed++;
-//         });
-//         var sum = score + missed;
-//         if(sum == 5  ){
-//           var result = `正解は ${score}回、不正解は ${missed}回でした！`;
-//           console.log(result);
-//           document.getElementById('result').innerText= result ;
-//         }
-
-        // console.log(document.getElementById('section3'));
-
-        document.getElementById('section3').classList.remove('hidden');
-        document.getElementById('button3').addEventListener('click',()=>{//スタート押したときの操作
-          settingInterval();
-          document.getElementById('section3').classList.add('hidden');          
-          // console.log(page.querySelector('#pop-button'));
-          page.querySelector('#pop-button').onclick = function() {
-            document.querySelector('#navigator').pushPage('page8.html');
-          };
-        });
-        var score = 0 ;
-        var missed = 0;          
-        answers.forEach((answer)=>{
-          //answer(number)を押したときの操作
-          document.getElementById(`answer${answer}`).addEventListener('click',()=>{
-            if(a < 4){
-              a++;
-              
-              document.getElementById('answer1').addEventListener('click',()=>{
-                score+=1;
-                missed = 5 - score ;
-                console.log(score);
-                console.log(missed);
-              });
-              questionChange();//問題を移行するメソッド
-              console.log(score);
-              console.log(missed);
-            }else if(a == 4){
-              document.getElementById('section4').classList.remove('hidden');
+        //         var score = 0 ;
+        //         var missed = 0 ;
+        // // console.log(document.getElementById('answer1'));
+        
+        //         document.getElementById('answer1').addEventListener('click',()=>{
+          //           score++;
+          //         });
+          //         document.getElementById('answer2').addEventListener('click',()=>{
+            //           missed++;
+            //         });
+            //         document.getElementById('answer3').addEventListener('click',()=>{
+              //           missed++;
+              //         });
+              //         document.getElementById('answer4').addEventListener('click',()=>{
+                //           missed++;
+                //         });
+                //         var sum = score + missed;
+                //         if(sum == 5  ){
+                  //           var result = `正解は ${score}回、不正解は ${missed}回でした！`;
+                  //           console.log(result);
+                  //           document.getElementById('result').innerText= result ;
+                  //         }
+                  
+                  // console.log(document.getElementById('section3'));
+                  
+                  document.getElementById('section3').classList.remove('hidden');
+                  document.getElementById('button3').addEventListener('click',()=>{//スタート押したときの操作
+                    settingInterval();
+                    document.getElementById('section3').classList.add('hidden');          
+                    // console.log(page.querySelector('#pop-button'));
+                    page.querySelector('#pop-button').onclick = function() {
+                      document.querySelector('#navigator').pushPage('page8.html');
+                    };
+                  });
+                  answers.forEach((answer)=>{
+                    //answer(number)を押したときの操作
+                    document.getElementById(`answer${answer}`).addEventListener('click',()=>{
+                      if(a < 4){
+                        a++
+                        if(answer==1){
+                          score++;
+                        }
+                        questionChange();//問題を移行するメソッド
+                        console.log(score);
+                        console.log(missed);
+                      }else if(a == 4){
+                        document.getElementById('section4').classList.remove('hidden');
+                        if(answer==1){
+                          score++;
+                        }
               //timerもfinishさせる
               clearFlag = true;
+              missed = 5-score;
+              console.log(score);
+              console.log(missed);
             }
           });
         });
       }
-// みりおにゃあ結果画面からトップ画面へ
-
-    if (page.matches('#eighth-page')) {
-      // sumResult();
-      var result = `正解は ${score }回、不正解は ${missed}回でした！`;
-      console.log(result);
-      document.getElementById('result').innerText= result ;
+      // みりおにゃあ結果画面からトップ画面へ
+      
+      if (page.matches('#eighth-page')) {
+        console.log(score);
+        console.log(missed);
+        result(score,missed);
+        // sumResult();
+      // var result = `正解は ${score }回、不正解は ${missed}回でした！`;
+      // console.log(result);
+      // document.getElementById('result').innerText= result ;
       console.log(page.querySelector('#pop-button'));
       page.querySelector('#pop-button').onclick = function(event) {
         // document.querySelector('#navigator').resetToPage('page1.html');
@@ -362,6 +370,7 @@ if (page.matches('#first-page')) {
           <div class="popup-container">
             <div class="button-background"></div>
             <div class="info-documents">準備OK?</div>
+            <img src="css/images/Ready.jpg"
             <input class="btn" id = 'button3' type="button" value = "ゲームスタート！" style="position: relative; top: 300px; left: 0; right: 0;" onclick="this.disabled=true;">
             <div class="black-background"></div>
           </div>
@@ -385,7 +394,7 @@ if (page.matches('#first-page')) {
       
       <div class="content-top" style="text-align: center">
         <p>みりおにゃあ結果画面</p>
-        <div id="result"></div>
+        <p>正解は<span id="score" ></span>回、不正解は<span id="missed"></span>回でした！</p>
         <ons-button class="btn" id="pop-button">トップへ戻る</ons-button>
       </div>
     </ons-page>

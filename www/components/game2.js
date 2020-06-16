@@ -141,3 +141,7 @@ function settingInterval(){
   }, 1000);
 
 }
+function result(score,missed){
+  document.getElementById('score').textContent =  `${score}` ;
+  document.getElementById('missed').textContent =  `${missed}` ;
+}
