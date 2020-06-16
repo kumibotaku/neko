@@ -1,4 +1,4 @@
-var a=0;
+var a = 0;
 var m = [0,1,2,3,];
 
 
@@ -76,43 +76,68 @@ const questionsMillionea = {
 function questionChange(){
   // console.log(questionsMillionea.text1);
   var texts = questionsMillionea[`text${a}`];
-  document.getElementById('questions2').innerHTML= texts ;
+  document.getElementById('questions2').textContent= texts ;
   var answers = questionsMillionea[`answers${a}`];
   var imgs = questionsMillionea[`img${a}`];
   
   console.log(imgs);
-  document.getElementById(`answer${m[0]+1}`).innerHTML= answers[0] ;
-  document.getElementById(`answer${m[1]+1}`).innerHTML= answers[1] ;
-  document.getElementById(`answer${m[2]+1}`).innerHTML= answers[2] ;
-  document.getElementById(`answer${m[3]+1}`).innerHTML= answers[3] ;
-  console.log(document.getElementById('game2Img'));
+  document.getElementById(`answer${m[0]+1}`).textContent= answers[0] ;
+  document.getElementById(`answer${m[1]+1}`).textContent= answers[1] ;
+  document.getElementById(`answer${m[2]+1}`).textContent= answers[2] ;
+  document.getElementById(`answer${m[3]+1}`).textContent= answers[3] ;
+  // console.log(document.getElementById('game2Img'));
   // var photo  = imgs[a];
   // document.getElementById('game2Img').setAttribute('src',`${photo}`);
   document.getElementById('game2Img').src = questionsMillionea[`img${a}`];
 }
 
 
-var score = 0 ;
-var missed = 0 ;
-function record(){ 
-  document.getElementById('answer1').addEventListener('click',()=>{
-    score++;
-
-  });
-  document.getElementById('answer2').addEventListener('click',()=>{
-    missed++;
-  });
-  document.getElementById('answer3').addEventListener('click',()=>{
-    missed++;
-  });
-  document.getElementById('answer4').addEventListener('click',()=>{
-    missed++;
-  });
-}
+// var score = 0 ;
+// var missed = 5 - score ;
+// function record(){ 
+//   document.getElementById('answer1').addEventListener('click',()=>{
+//     score++;
+//     missed = 5 - score ;
+//     console.log(score);
+//     console.log(missed);
+//   });
+//   // document.getElementById('answer2').addEventListener('click',()=>{
+//   //   missed++;
+//   //   console.log(score);
+//   //   console.log(missed);
+//   // });
+//   // document.getElementById('answer3').addEventListener('click',()=>{
+//   //   missed++;
+//   //   console.log(score);
+//   //   console.log(missed);
+//   // });
+//   // document.getElementById('answer4').addEventListener('click',()=>{
+//   //   missed++;
+//   // });
+// }
 
 function sumResult(){
-
-  var result = `正解は ${score / 2}回、不正解は ${missed/2}回でした！`;
+  var result = `正解は ${score }回、不正解は ${missed}回でした！`;
   console.log(result);
   document.getElementById('result').innerText= result ;
+}
+
+
+var clearFlag = false;
+function settingInterval(){
+  var count = 0;
+
+  var id = setInterval(() => {
+    count ++;
+    // console.log(count);
+    if(count > 30){
+      clearInterval(id);
+      console.log('finish!');
+    }else if(clearFlag){
+      clearInterval(id);
+      console.log('finish!2');
+      
+    }
+  }, 1000);
+
 }

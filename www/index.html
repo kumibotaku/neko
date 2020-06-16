@@ -51,52 +51,61 @@
       
       if (page.matches('#seventh-page')) {
         // console.log(document.getElementById('answer1'));
-        var score = 0 ;
-        var missed = 0 ;
-// console.log(document.getElementById('answer1'));
+//         var score = 0 ;
+//         var missed = 0 ;
+// // console.log(document.getElementById('answer1'));
 
-        document.getElementById('answer1').addEventListener('click',()=>{
-          score++;
-        });
-        document.getElementById('answer2').addEventListener('click',()=>{
-          missed++;
-        });
-        document.getElementById('answer3').addEventListener('click',()=>{
-          missed++;
-        });
-        document.getElementById('answer4').addEventListener('click',()=>{
-          missed++;
-        });
-        var sum = score + missed;
-        if(sum == 5  ){
-          var result = `正解は ${score}回、不正解は ${missed}回でした！`;
-          console.log(result);
-          document.getElementById('result').innerText= result ;
-        }
+//         document.getElementById('answer1').addEventListener('click',()=>{
+//           score++;
+//         });
+//         document.getElementById('answer2').addEventListener('click',()=>{
+//           missed++;
+//         });
+//         document.getElementById('answer3').addEventListener('click',()=>{
+//           missed++;
+//         });
+//         document.getElementById('answer4').addEventListener('click',()=>{
+//           missed++;
+//         });
+//         var sum = score + missed;
+//         if(sum == 5  ){
+//           var result = `正解は ${score}回、不正解は ${missed}回でした！`;
+//           console.log(result);
+//           document.getElementById('result').innerText= result ;
+//         }
 
         // console.log(document.getElementById('section3'));
 
         document.getElementById('section3').classList.remove('hidden');
         document.getElementById('button3').addEventListener('click',()=>{//スタート押したときの操作
+          settingInterval();
           document.getElementById('section3').classList.add('hidden');          
-          console.log(page.querySelector('#pop-button'));
+          // console.log(page.querySelector('#pop-button'));
           page.querySelector('#pop-button').onclick = function() {
             document.querySelector('#navigator').pushPage('page8.html');
           };
         });
-                  
+        var score = 0 ;
+        var missed = 0;          
         answers.forEach((answer)=>{
           //answer(number)を押したときの操作
           document.getElementById(`answer${answer}`).addEventListener('click',()=>{
             if(a < 4){
               a++;
-              record();
+              
+              document.getElementById('answer1').addEventListener('click',()=>{
+                score+=1;
+                missed = 5 - score ;
+                console.log(score);
+                console.log(missed);
+              });
               questionChange();//問題を移行するメソッド
-
+              console.log(score);
+              console.log(missed);
             }else if(a == 4){
               document.getElementById('section4').classList.remove('hidden');
               //timerもfinishさせる
-              // sumResult();
+              clearFlag = true;
             }
           });
         });
