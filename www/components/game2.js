@@ -116,11 +116,11 @@ function questionChange(){
 //   // });
 // }
 
-function sumResult(){
-  var result = `正解は ${score }回、不正解は ${missed}回でした！`;
-  console.log(result);
-  document.getElementById('result').innerText= result ;
-}
+// function sumResult(){
+//   var result = `正解は ${score }回、不正解は ${missed}回でした！`;
+//   console.log(result);
+//   document.getElementById('result').innerText= result ;
+// }
 
 
 var clearFlag = false;

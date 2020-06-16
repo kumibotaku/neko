@@ -113,7 +113,10 @@
 // みりおにゃあ結果画面からトップ画面へ
 
     if (page.matches('#eighth-page')) {
-      sumResult();
+      // sumResult();
+      var result = `正解は ${score }回、不正解は ${missed}回でした！`;
+      console.log(result);
+      document.getElementById('result').innerText= result ;
       console.log(page.querySelector('#pop-button'));
       page.querySelector('#pop-button').onclick = function(event) {
         // document.querySelector('#navigator').resetToPage('page1.html');
