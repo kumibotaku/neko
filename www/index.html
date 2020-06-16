@@ -17,11 +17,12 @@
   <script>
     var score  =0 ;
     var missed  =5 ;
-
+    var count = 0;
     document.addEventListener('init', function(event) {
       var page = event.target;
       
       if (page.matches('#first-page')) {
+        
         page.querySelector('#push-button2').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
         };
@@ -95,7 +96,7 @@
                     document.getElementById(`answer${answer}`).addEventListener('click',()=>{
                       if(a < 4){
                         a++
-                        if(answer==1){
+                        if(document.getElementById('answer1')==`answers${a}[0]`){
                           score++;
                         }
                         questionChange();//問題を移行するメソッド
@@ -370,8 +371,8 @@ if (page.matches('#first-page')) {
           <div class="popup-container">
             <div class="button-background"></div>
             <div class="info-documents">準備OK?</div>
-            <img src="css/images/Ready.jpg"
-            <input class="btn" id = 'button3' type="button" value = "ゲームスタート！" style="position: relative; top: 300px; left: 0; right: 0;" onclick="this.disabled=true;">
+            <img src="css/images/Ready.jpg">
+            <input class="btn" id = 'button3' type="button" value = "ゲームスタート！" style="position: relative; top: 430px; left: 0; right: 0;" onclick="this.disabled=true;">
             <div class="black-background"></div>
           </div>
         </section>
@@ -379,7 +380,7 @@ if (page.matches('#first-page')) {
         <section class="hidden" id="section4">
           <div class="popup-container">
             <div class="button-background"></div>
-            <div class="info-documents">既に癒されましたね。<p>さあ答え合わせです。</p></div>
+            <div class="info-documents">ねこは問題文にいるだけでも十分癒してくれる存在なのです。<p>さあ答え合わせです。</p></div>
             <ons-button class="btn" id="pop-button" style="position: relative; top: 300px; left: 0; right: 0;">次のページへ</ons-button>
             <div class="black-background"></div>
           </div>
@@ -387,7 +388,7 @@ if (page.matches('#first-page')) {
       </div>
     </ons-page>
   </ons-template>
-
+  
   <!-- みりおにゃあ結果画面 -->
   <ons-template id="page8.html">
     <ons-page id="eighth-page">
@@ -395,6 +396,8 @@ if (page.matches('#first-page')) {
       <div class="content-top" style="text-align: center">
         <p>みりおにゃあ結果画面</p>
         <p>正解は<span id="score" ></span>回、不正解は<span id="missed"></span>回でした！</p>
+        <img src="css/images/Ready.jpg">
+        <p>猫に関しては知識があまりなくネットからの引用が多いですが、それでも少しでも彼らのことを知っていただければ幸いです。</p>
         <ons-button class="btn" id="pop-button">トップへ戻る</ons-button>
       </div>
     </ons-page>
