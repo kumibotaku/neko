@@ -1,9 +1,12 @@
 var a = 0;
-var m = [0,1,2,3,];
+var m = [0,1,2,3,4];//問題のランダム選択
+var random = [0,1,2,3,];//問題のランダム配置
 
 
 m =  shuffle(m);
+random =  shuffle(random);
 console.log(m);
+console.log(random);
 
 
 const questionsMillionea = {
@@ -37,10 +40,10 @@ const questionsMillionea = {
   'ねこ可愛い？'
   ,
   answers3:[
-    'イエス',
-    'はい',
-    '吸いたい',
     '可愛い',
+    '可愛くない',
+    '吸いたい',
+    '犬の方が好き',
   ],
   img3:
   './css/images/american-shorthair.png'
@@ -49,10 +52,10 @@ const questionsMillionea = {
   'いまなんもんめ？？'
   ,
   answers4:[
-    '4',
+    '5',
     '2',
     '3',
-    '5',
+    '4',
   ],
   img4:
   './css/images/american-shorthair.png'
@@ -69,22 +72,21 @@ const questionsMillionea = {
   img5:
   './css/images/american-shorthair.png'
   ,
-
 }
 
 
 function questionChange(){
   // console.log(questionsMillionea.text1);
-  var texts = questionsMillionea[`text${a}`];
-  document.getElementById('questions2').textContent= texts ;
-  var answers = questionsMillionea[`answers${a}`];
+  // var texts = questionsMillionea[`text${a}`];
+  document.getElementById('questions2').textContent= questionsMillionea[`text${a}`];
+  var answers = questionsMillionea[`answers${a}`];//四択の選択肢
   var imgs = questionsMillionea[`img${a}`];
   
   console.log(imgs);
-  document.getElementById(`answer${m[0]+1}`).textContent= answers[2] ;
-  document.getElementById(`answer${m[1]+1}`).textContent= answers[1] ;
-  document.getElementById(`answer${m[2]+1}`).textContent= answers[3] ;
-  document.getElementById(`answer${m[3]+1}`).textContent= answers[0] ;
+  document.getElementById(`answer1`).textContent = answers[`${random[0]}`] ;
+  document.getElementById(`answer2`).textContent = answers[`${random[1]}`] ;
+  document.getElementById(`answer3`).textContent = answers[`${random[2]}`] ;
+  document.getElementById(`answer4`).textContent = answers[`${random[3]}`] ;
   // console.log(document.getElementById('game2Img'));
   // var photo  = imgs[a];
   // document.getElementById('game2Img').setAttribute('src',`${photo}`);
@@ -105,6 +107,10 @@ function settingInterval(){
     if(count >= 30){
       clearInterval(id);
       console.log('finish!');
+      // function resultTime(time){
+      //   return  time ;
+      // }
+      // resultTime(count);
       document.getElementById('section4').classList.remove('hidden');
     }else if(clearFlag){
       clearInterval(id);
