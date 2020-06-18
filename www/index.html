@@ -19,6 +19,7 @@
     var score  =0 ;
     var missed  =5 ;
     var count = 0;
+    var cs = [1,2,3,4,];
     document.addEventListener('init', function(event) {
       var page = event.target;
       
@@ -65,33 +66,56 @@
             document.querySelector('#navigator').pushPage('page8.html');
             };
         });
-        answers.forEach((answer)=>{
-          //answer(number)を押したときの操作
-          document.getElementById(`answer${answer}`).addEventListener('click',()=>{
+
+        questionChange();//問題を移行するメソッド
+        console.log(questionsMillionea[`answers${m[0]}`][0]);
+        cs.forEach((c)=>{    
+          document.getElementById(`answer${c}`).addEventListener('click',()=>{
             if(a < 4){
+              console.log(questionsMillionea[`answers${m[a]}`][0]);
+              if(document.getElementById('answer1').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                score++;
+                console.log('scored1');
+              }else if(document.getElementById('answer2').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                score++;
+                console.log('scored2');
+              }else if(document.getElementById('answer3').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                score++;
+                console.log('scored3');
+              }else if(document.getElementById('answer4').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                score++;
+                console.log('scored4');
+              }
+
               a++;
-              if(answer == 1){//スコアに得点する基準になる部分
-                score++;
-              }
-              questionChange();//問題を移行するメソッド
-              console.log(score);
-              console.log(missed);
-              document.getElementById(`answer${answer}`).classList.add('scoreTarget');
-              
+              questionChange();
+              console.log('changed');
             }else if(a == 4){
-              document.getElementById('section4').classList.remove('hidden');
-              if(answer == 1){
+              console.log('last');
+              if(document.getElementById('answer1').textContent == questionsMillionea[`answers${m[a]}`][0]){
                 score++;
-                clearFlag = true;
-              }
-              //timerもfinishさせる
+                console.log('scored5');
+                }else if(document.getElementById('answer2').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                  score++;
+                  console.log('scored6');
+                }else if(document.getElementById('answer3').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                  score++;
+                  console.log('scored7');
+                }else if(document.getElementById('answer4').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                  score++;
+                  console.log('scored8');
+                }
+              clearFlag = true;
               missed = 5 - score;
-              console.log(score);
-              console.log(missed);
             }
           });
+          
         });
+        
       }
+      
+      
+          
       // みりおにゃあ結果画面からトップ画面へ
       
       if (page.matches('#eighth-page')) {
@@ -129,8 +153,7 @@
       }  
       //9-10 10-9
       if (page.matches('#ninth-page')) {
-        grid();
-
+        randomGrids();
         page.querySelector('#push-button9').onclick = function() {
           document.querySelector('#navigator').pushPage('page10.html');
         };
@@ -258,7 +281,7 @@
         
         <div class="game1-container">
           <img id="questionImg" src="css/images/hatena.jpg">
-          <div class="seats">
+          <div class="seats" >
             <div class="seat " id="s1" ></div>
             <div class="seat " id="s2" ></div>
             <div class="seat " id="s3" ></div>
@@ -322,13 +345,13 @@
     <ons-page id="sixth-page">
       <div class="content-top" style="text-align: center">
         <h1>結果発表！</h1>
-        <p>答えは<span id="catName" >neko</span>でした！</p>
+        <p>答えは<p id="catName" >neko</p>でした！</p>
         <div class="resultTime">
           <div >残り時間: <span id="resultTime" ></span></div>
           <div class="selectedAnswer">選択された答え:<span id="answerBox"></span></div>
         </div>
         <img id="questionImg2" src="css/images/hatena.jpg">
-        <p>一言コメント<p id="catComment">可愛いですね。</p></p>
+        <p>ねこコメント<p id="catComment">可愛いですね。</p></p>
         
         <ons-button class="btn" id="reset-button">ToP page</ons-button>
       </div>
@@ -362,7 +385,6 @@
       <div class="content-top" style="text-align: center">
         <h1>問題</h1> 
         <p>経過時間：<span id="passedTime"></span></p>
-        <h2>問題1</h2>
         <p id="questions2">ねこがゴロゴロ鳴いているときはどんな時？</p>
         <img id="game2Img" src="css/images/minuet.png">
         <div class="answers game2">
@@ -439,39 +461,39 @@
         <!-- <p>にゃん経衰弱ゲーム画面</p> -->
         <div class="content-top" style="text-align: center">
           <div class="panel-box" >
-            <div class="panel-component grid" id="g0" ></div>
-            <div class="panel-component grid" id="g1" ></div>
-            <div class="panel-component grid" id="g2" ></div>
-            <div class="panel-component grid" id="g3" ></div>
-            <div class="panel-component grid" id="g4" ></div>
-            <div class="panel-component grid" id="g5" ></div>
-            <div class="panel-component grid" id="g6" ></div>
-            <div class="panel-component grid" id="g7" ></div>
-            <div class="panel-component grid" id="g8" ></div>
-            <div class="panel-component grid" id="g9" ></div>
-            <div class="panel-component grid" id="g10"></div>
-            <div class="panel-component grid" id="g11" ></div>
-            <div class="panel-component grid" id="g12" ></div>
-            <div class="panel-component grid" id="g13" ></div>
-            <div class="panel-component grid" id="g14" ></div>
-            <div class="panel-component grid" id="g15" ></div>
-            <div class="panel-component grid" id="g16" ></div>
-            <div class="panel-component grid" id="g17" ></div>
-            <div class="panel-component grid" id="g18" ></div>
-            <div class="panel-component grid" id="g19" ></div>
-            <div class="panel-component grid" id="g20"></div>
-            <div class="panel-component grid" id="g21" ></div>
-            <div class="panel-component grid" id="g22" ></div>
-            <div class="panel-component grid" id="g23" ></div>
-            <div class="panel-component grid" id="g24" ></div>
-            <div class="panel-component grid" id="g25" ></div>
-            <div class="panel-component grid" id="g26" ></div>
-            <div class="panel-component grid" id="g27" ></div>
-            <div class="panel-component grid" id="g28" ></div>
-            <div class="panel-component grid" id="g29" ></div>
+            <div class="panel-component grid" id="g0" >あ</div>
+            <div class="panel-component grid" id="g1" >あ</div>
+            <div class="panel-component grid" id="g2" >い</div>
+            <div class="panel-component grid" id="g3" >い</div>
+            <div class="panel-component grid" id="g4" >う</div>
+            <div class="panel-component grid" id="g5" >う</div>
+            <div class="panel-component grid" id="g6" >え</div>
+            <div class="panel-component grid" id="g7" >え</div>
+            <div class="panel-component grid" id="g8" >お</div>
+            <div class="panel-component grid" id="g9" >お</div>
+            <div class="panel-component grid" id="g10">か</div>
+            <div class="panel-component grid" id="g11" >か</div>
+            <div class="panel-component grid" id="g12" >き</div>
+            <div class="panel-component grid" id="g13" >き</div>
+            <div class="panel-component grid" id="g14" >く</div>
+            <div class="panel-component grid" id="g15" >く</div>
+            <div class="panel-component grid" id="g16" >け</div>
+            <div class="panel-component grid" id="g17" >け</div>
+            <div class="panel-component grid" id="g18" >こ</div>
+            <div class="panel-component grid" id="g19" >こ</div>
+            <div class="panel-component grid" id="g20" >さ</div>
+            <div class="panel-component grid" id="g21" >さ</div>
+            <div class="panel-component grid" id="g22" >し</div>
+            <div class="panel-component grid" id="g23" >し</div>
+            <div class="panel-component grid" id="g24" >す</div>
+            <div class="panel-component grid" id="g25" >す</div>
+            <div class="panel-component grid" id="g26" >せ</div>
+            <div class="panel-component grid" id="g27" >せ</div>
+            <div class="panel-component grid" id="g28" >そ</div>
+            <div class="panel-component grid" id="g29" >そ</div>
           </div>
-          <ons-button class="btn" id="push-button9">next</ons-button>
-          <ons-button class="btn" id="pop-button">Pop page1</ons-button>
+          <ons-button  class="btn" id="push-button9" >next</ons-button>
+          <!-- <ons-button class="btn" id="pop-button">Pop page1</ons-button> -->
         </div>
         <!-- 開始前ポップ -->
         <section class="hidden" id="section3">

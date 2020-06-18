@@ -57,6 +57,7 @@ html, body {
   position: absolute;
   left: 0;
   top: 0;
+
 }
 
 
@@ -111,6 +112,7 @@ html, body {
 
 .explanation > p{
   font-size: 16px;
+  background-color: rgba(255, 161, 208, 0.404);
 }
 
 
@@ -180,10 +182,12 @@ header > img{
 }
 
 .game1-container{
+  width: 70%;
   position: relative;
-  width: 80%;
-  left: 10%;
-  right: 10%;
+  position: absolute;
+  top: 400;
+  left: 3%;
+  right: 15%;
 }
 
 .game1-container img{
@@ -477,22 +481,36 @@ header > img{
   width: 80%;
   margin: 0 auto;
 }
+#catName{
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 0.1em;
+}
 
 .panel-box{
   width: 90%;
   height: 550px;
-  margin: 0 auto;
+  margin: 50px auto 0;
   display: grid;
   justify-content: center;
   grid-template-rows: repeat(6,80px);
   grid-template-columns: repeat(5,60px);
   gap: 3px 3px;
-
-
 }
+
+.dissapear{
+  opacity: 0.0;
+}
+
+
+
 
 .panel-component{
   /* background-image: url('./css/images/genbaneko.jpg'); */
   background-color: green;
 
+}
+
+#push-button9{
+  display: none;
 }
