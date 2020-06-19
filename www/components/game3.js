@@ -1,48 +1,4 @@
-// var grids = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-//   // 16,17,18,19,20,21,22,23,24,25,26,27,28,29,
-// ];
-// grids = shuffle(grids);
-// console.log(grids);
 
-// var i = [
-//   0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-//   // 16,17,18,19,20,21,22,23,24,25,26,27,28,29,
-// ] ;
-// var j =[
-//   './css/images/neko.jpg',
-//   './css/images/neko.jpg',
-//   './css/images/neko2.jpg',
-//   './css/images/neko2.jpg',
-//   './css/images/neko4.jpg',
-//   './css/images/neko4.jpg',
-//   './css/images/neko6.jpg',
-//   './css/images/neko6.jpg',
-//   './css/images/neko8.jpg',
-//   './css/images/neko8.jpg',
-//   './css/images/neko10.jpg',
-//   './css/images/neko10.jpg',
-//   './css/images/neko12.jpg',
-//   './css/images/neko12.jpg',
-//   './css/images/neko14.jpg',
-//   './css/images/neko14.jpg',
-// ];
-
-
-// function randomGrids(){
-  // for(k = 0 ; k < 16;k++ ){   //ランダムな配置
-  //   document.getElementById(`g${grids[k]}`).setAttribute("id",`h${i[k]}`);
-  //   console.log(document.getElementById(`h${i[k]}`));
-  //   document.getElementById(`h${i[k]}`).setAttribute("src",`${j[k]}`);
-  //   // document.getElementById(`h${i[k]}`).setAttribute("alt",`alt${i[k]}`);
-  //   // document.getElementById(`h${i[k]}`).textContent = i[k];
-  // }
-  // // console.log(document.getElementById(`g${grid}`));
-  // // var t = document.getElementById(`g${grid+1}`).getAttribute('id'); 
-  // // document.getElementById(`g${grid}`).removeAttribute('id');
-  // // console.log(t);
-  // // document.getElementById(`${t}`).setAttribute("id",`${t}`);
-  
-// }
 
 // グローバル
 // div要素を格納
@@ -59,6 +15,8 @@ var flgFirst = true;
 var cardFirst;
 // そろえた枚数
 var countUnit = 0;
+// めくった枚数
+var countNumber = 0;
 
  function onload (){
     // 数字格納 一時配列
@@ -96,7 +54,7 @@ var countUnit = 0;
 
 // クリック時の処理
 function turn(e){
-    
+    countNumber ++ ;
     var div = e.target;
     
     // カードのタイマー処理が動作中は return
@@ -133,6 +91,7 @@ function turn(e){
                 
                 if (countUnit == 8){
                     clearInterval(timer);  // timer終了
+                    
                     document.getElementById('section6').classList.remove('hidden');  
                   }
             }, 500)

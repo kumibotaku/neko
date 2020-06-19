@@ -15,7 +15,7 @@ html, body {
 
 #top-image{
   
-  height: 350px;
+  height: 300px;
 }
 
 #cats-info{
@@ -556,6 +556,7 @@ header > img{
     width: 360px;
     height: 480px;
     overflow: hidden;
+    background-image: url("./images/american-shorthair.png");
     display: grid;
     justify-content: center;
     grid-template-rows: repeat(4,120px);

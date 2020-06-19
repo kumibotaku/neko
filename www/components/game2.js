@@ -283,17 +283,13 @@ function settingInterval(){
   // var count = 0;
   
   var id = setInterval(() => {
-    count ++;
+    count ++ ;
     console.log(count);
     document.getElementById('passedTime').textContent =`${count}`;
     if(count >= 30){
       clearInterval(id);
       missed = 5 - score;
       console.log('finish!');
-      // function resultTime(time){
-      //   return  time ;
-      // }
-      // resultTime(count);
       document.getElementById('section4').classList.remove('hidden');
     }else if(clearFlag){
       clearInterval(id);
