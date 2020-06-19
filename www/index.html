@@ -24,7 +24,9 @@
       var page = event.target;
       
       if (page.matches('#first-page')) {
-        
+        document.getElementById('top-image').addEventListener('click',()=>{
+          imageChange();
+        })
         page.querySelector('#push-button2').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
         };
@@ -153,8 +155,14 @@
       }  
       //9-10 10-9
       if (page.matches('#ninth-page')) {
-        randomGrids();
-        page.querySelector('#push-button9').onclick = function() {
+        // randomGrids();
+        document.getElementById('section5').classList.remove('hidden');  
+        page.querySelector('#button5').onclick = function() {
+          document.getElementById('section5').classList.add('hidden');  
+          onload();
+          
+        }
+        page.querySelector('#pop-button').onclick = function() {
           document.querySelector('#navigator').pushPage('page10.html');
         };
       }  
@@ -240,7 +248,7 @@
         <div class="content-top" style="text-align: center">
           <h1 style="margin: 0; padding: 12px 0 0;">ねこゲーム</h1>
           <p>ねこたちに癒されてくださいお願いします。</p>
-          <img src="css/images/scottish-fold.png">
+          <img id="top-image" src="css/images/scottish-fold.png">
           <ons-button class="btn" id="push-button2" >モザイクネコ</ons-button>
           <ons-button class="btn" id="push-button4">クイズ！ミリオにゃあ</ons-button>
           <ons-button class="btn" id="push-button5">にゃん経衰弱</ons-button>
@@ -460,53 +468,42 @@
         
         <!-- <p>にゃん経衰弱ゲーム画面</p> -->
         <div class="content-top" style="text-align: center">
-          <div class="panel-box" >
-            <div class="panel-component grid" id="g0" >あ</div>
-            <div class="panel-component grid" id="g1" >あ</div>
-            <div class="panel-component grid" id="g2" >い</div>
-            <div class="panel-component grid" id="g3" >い</div>
-            <div class="panel-component grid" id="g4" >う</div>
-            <div class="panel-component grid" id="g5" >う</div>
-            <div class="panel-component grid" id="g6" >え</div>
-            <div class="panel-component grid" id="g7" >え</div>
-            <div class="panel-component grid" id="g8" >お</div>
-            <div class="panel-component grid" id="g9" >お</div>
-            <div class="panel-component grid" id="g10">か</div>
-            <div class="panel-component grid" id="g11" >か</div>
-            <div class="panel-component grid" id="g12" >き</div>
-            <div class="panel-component grid" id="g13" >き</div>
-            <div class="panel-component grid" id="g14" >く</div>
-            <div class="panel-component grid" id="g15" >く</div>
-            <div class="panel-component grid" id="g16" >け</div>
-            <div class="panel-component grid" id="g17" >け</div>
-            <div class="panel-component grid" id="g18" >こ</div>
-            <div class="panel-component grid" id="g19" >こ</div>
-            <div class="panel-component grid" id="g20" >さ</div>
-            <div class="panel-component grid" id="g21" >さ</div>
-            <div class="panel-component grid" id="g22" >し</div>
-            <div class="panel-component grid" id="g23" >し</div>
-            <div class="panel-component grid" id="g24" >す</div>
-            <div class="panel-component grid" id="g25" >す</div>
-            <div class="panel-component grid" id="g26" >せ</div>
-            <div class="panel-component grid" id="g27" >せ</div>
-            <div class="panel-component grid" id="g28" >そ</div>
-            <div class="panel-component grid" id="g29" >そ</div>
+          <div>数字を合わせてください</div>
+          <div id="panel-box" >  
+            
+
+        <!--<input type="image" src="" name="name0"   class="panel-component grid btn " id="g0"   >
+            <input type="image" src="" name="name0"   class="panel-component grid btn " id="g1"   >
+            <input type="image" src="" name="name1"   class="panel-component grid btn " id="g2"   >
+            <input type="image" src="" name="name1"   class="panel-component grid btn " id="g3"   >
+            <input type="image" src="" name="name2"   class="panel-component grid btn " id="g4"   >
+            <input type="image" src="" name="name2"   class="panel-component grid btn " id="g5"   >
+            <input type="image" src="" name="name3"   class="panel-component grid btn " id="g6"   >
+            <input type="image" src="" name="name3"   class="panel-component grid btn " id="g7"   >
+            <input type="image" src="" name="name4"   class="panel-component grid btn " id="g8"   >
+            <input type="image" src="" name="name4"   class="panel-component grid btn " id="g9"   >
+            <input type="image" src="" name="name5"   class="panel-component grid btn " id="g10"  >
+            <input type="image" src="" name="name5"   class="panel-component grid btn " id="g11"   >
+            <input type="image" src="" name="name6"   class="panel-component grid btn " id="g12"   >
+            <input type="image" src="" name="name6"   class="panel-component grid btn " id="g13"   >
+            <input type="image" src="" name="name7"   class="panel-component grid btn " id="g14"   >
+            <input type="image" src="" name="name7"   class="panel-component grid btn " id="g15"   > -->
           </div>
-          <ons-button  class="btn" id="push-button9" >next</ons-button>
+          <div id="result" style="position: relative; top: 100px;">経過秒数: </div>
+          <!-- <ons-button style="position: relative; top: 100px;" class="btn" id="push-button9" >next</ons-button> -->
           <!-- <ons-button class="btn" id="pop-button">Pop page1</ons-button> -->
-        </div>
-        <!-- 開始前ポップ -->
-        <section class="hidden" id="section3">
-          <div class="popup-container">
-            <div class="button-background"></div>
-            <div class="info-documents">準備OK?</div>
+          <!-- 開始前ポップ -->
+          <section class="hidden" id="section5">
+            <div class="popup-container">
+              <div class="button-background"></div>
+              <div class="info-documents">準備OK?</div>
             <img src="css/images/Ready.jpg">
-            <input class="btn" id = 'button3' type="button" value = "ゲームスタート！" style="position: relative; top: 430px; left: 0; right: 0;" onclick="this.disabled=true;">
+            <input class="btn" id = 'button5' type="button" value = "ゲームスタート！" style="position: relative; top: 430px; left: 0; right: 0;" onclick="this.disabled=true;">
             <div class="black-background"></div>
           </div>
         </section>
         <!-- 終了ポップ -->
-        <section class="hidden" id="section4">
+        <section class="hidden" id="section6">
           <div class="popup-container">
             <div class="button-background"></div>
             <div class="info-documents">ねこは問題文にいるだけでも十分癒してくれる存在なのです。<p>さあ答え合わせです。</p></div>
@@ -514,6 +511,7 @@
             <div class="black-background"></div>
           </div>
         </section>  
+      </div>
       </ons-page>
     </ons-template>
 

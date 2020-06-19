@@ -22,6 +22,27 @@ answers = shuffle(answers);
 // console.log(numbers );
 // console.log(answers );
 
+var j =[
+    './css/images/neko.jpg',
+    './css/images/neko1.jpg',
+    './css/images/neko2.jpg',
+    './css/images/neko3.jpg',
+    './css/images/neko4.jpg',
+    './css/images/neko5.jpg',
+    './css/images/neko6.jpg',
+    './css/images/neko7.jpg',
+    './css/images/neko8.jpg',
+    './css/images/neko9.jpg',
+    './css/images/neko10.jpg',
+    './css/images/neko11.jpg',
+    './css/images/neko12.jpg',
+    './css/images/neko13.jpg',
+    './css/images/neko14.jpg',
+    './css/images/neko15.jpg',
+    './css/images/neko16.jpg',
+    './css/images/neko17.jpg',
+  ];
+
 const relations = {
   img1:
   'css/images/american-shorthair.png'
@@ -189,6 +210,15 @@ function startInterval(){
   
 }
 
-
-
+var i =1;
+function imageChange(){
+  
+  document.getElementById('top-image').setAttribute("src",`${j[i]}`);
+  if(i==17){
+    i = 1;
+    j = shuffle(j);
+  }
+  i++;
+  // document.getElementById('top-image').setAttribute("src",`./css/images/neko3.jpg`);
+}
 
