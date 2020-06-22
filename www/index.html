@@ -132,7 +132,7 @@
         console.log(score);
         console.log(missed);
         result(score,missed);
-        
+        changeInfo();
         console.log(page.querySelector('#pop-button'));
         page.querySelector('#pop-button').onclick = function(event) {
         // document.querySelector('#navigator').resetToPage('page1.html');
@@ -183,6 +183,7 @@
           //10-1
           if (page.matches('#tenth-page')) {
             timeResult(countNumber);
+            changeImg(countNumber);
         page.querySelector('#resetter').onclick = function(event) {
           // document.querySelector('#navigator').resetToPage();
           location.reload();
@@ -342,7 +343,7 @@
             <section class="hidden" id="section1">
               <div class="popup-container">
                 <div class="button-background"></div>
-                <div class="info-documents">既に癒されましたね。<p>さあ答え合わせです。</p></div>
+                <div class="info-documents">ちゃんとネコちゃんを見ることは出来ましたか？<p>さあ答え合わせです。</p></div>
                 <ons-button class="btn" id="push-button" style="position: relative; top: 300px; left: 0; right: 0;">次のページへ</ons-button>
                 <div class="black-background"></div>
               </div>
@@ -427,7 +428,7 @@
         <section class="hidden" id="section4">
           <div class="popup-container">
             <div class="button-background"></div>
-            <div class="info-documents">ねこは問題文にいるだけでも十分癒してくれる存在なのです。<p>さあ答え合わせです。</p></div>
+            <div class="info-documents">実は問題に出てくるネコたち、目線が全部カメラ目線なんですよ。嘘です。<p>さあ答え合わせです。</p></div>
             <ons-button class="btn" id="pop-button" style="position: relative; top: 300px; left: 0; right: 0;">次のページへ</ons-button>
             <div class="black-background"></div>
           </div>
@@ -442,9 +443,10 @@
       
       <div class="content-top" style="text-align: center">
         <h1>クイズ！みりおにゃあ　結果</h1>
-        <p>正解は<span id="score" ></span>回、不正解は<span id="missed"></span>回でした！</p>
+        <p>正解は<span style="font-weight: bold;" id="score" ></span>回、不正解は<span style="font-weight: bold;" id="missed"></span>回でした！</p>
         <img src="css/images/norwegian-forest-cat.png">
-        <p id="cats-info">猫に関しては知識があまりなくネットからの引用が多いですが、それでも少しでも彼らのことを知っていただければ幸いです。</p>
+        <p>～まめちしき～</p>
+        <p style="font-size: 18px;" id="cats-info">猫に関しては知識があまりなくネットからの引用が多いですが、それでも少しでも彼らのことを知っていただければ幸いです。</p>
         <ons-button class="btn" id="pop-button">トップへ戻る</ons-button>
       </div>
     </ons-page>
@@ -477,8 +479,8 @@
         
         <!-- <p>にゃん経衰弱ゲーム画面</p> -->
         <div class="content-top" style="text-align: center">
-          <h1>数字を合わせてください</h1>
-          <div id="panel-box" >  
+          <h1>Q.数字を合わせてください</h1>
+          <div  id="panel-box" >  
             
 
         <!--<input type="image" src="" name="name0"   class="panel-component grid btn " id="g0"   >
@@ -515,7 +517,7 @@
         <section class="hidden" id="section6">
           <div class="popup-container">
             <div class="button-background"></div>
-            <div class="info-documents">ねこは問題文にいるだけでも十分癒してくれる存在なのです。<p>さあ答え合わせです。</p></div>
+            <div class="info-documents">にゃん経衰弱で神経がすり減ったあなたへ。<p>次へ行くと猫がいますよ。</p></div>
             <ons-button class="btn" id="pop-button" style="position: relative; top: 300px; left: 0; right: 0;">次のページへ</ons-button>
             <div class="black-background"></div>
           </div>
@@ -530,7 +532,9 @@
     <div class="content-top" style="text-align: center">
     <p>にゃん経衰弱結果画面</p>
     <h1>結果発表</h1>
-    <div >試行回数：<span id="clickTime" ></span> </div>
+    <div >試行回数：<span id="clickTime" ></span>回 </div>
+    <img id="game3Img" src="./css/images/ragamuffin.png" >
+    
     <ons-button class="btn" id="resetter" >topへ</ons-button>
     <!-- <ons-button id="push-button">next</ons-button> -->
   </div>

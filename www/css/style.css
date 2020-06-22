@@ -82,8 +82,8 @@ html, body {
 
 /* -------------------- */
 .content-top > #game2Img{
-  width: auto;
-  height: 400px;  
+  width: 80%;
+  height: 300px;  
 }
 
 /* .explanations{ 
@@ -562,7 +562,7 @@ header > img{
     height: 480px;
     overflow: hidden;
     background-image: url("./images/american-shorthair.png");
-    background-size: contain;
+    background-size: 360px 480px;
     background-repeat: no-repeat;
     display: grid;
     justify-content: center;
@@ -600,4 +600,9 @@ header > img{
 #result {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+#game3Img{
+  width: 80%;
+  height: auto;
 }

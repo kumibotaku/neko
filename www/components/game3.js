@@ -17,6 +17,29 @@ var cardFirst;
 var countUnit = 0;
 // めくった枚数
 var countNumber = 0;
+var z = 1 ;//背景画像用の変数
+
+const imgs3 = [
+    './css/images/american-shorthair.png',
+    './css/images/bengal.png',
+    './css/images/british-shorthair.png',
+    './css/images/chinchilla.png',
+    './css/images/exotic-shorthair.png',
+    './css/images/mainecoon.png',
+    './css/images/minuet.png',
+    './css/images/munchkin.png',
+    './css/images/norwegian-forest-cat.png',
+    './css/images/siberian.png',
+];
+
+const catComment=[
+    '',
+    '',
+    '',
+    '',
+    '',
+]
+
 
  function onload (){
     // 数字格納 一時配列
@@ -111,15 +134,19 @@ function turn(e){
                 backTimer = NaN;
             }, 500);
         }
-        
         flgFirst = true;
     }  
 }
 
 // タイマー開始
 function startTimer(){
+    
     timer = setInterval(showSecond, 1000);
+    timer = setInterval(
+        changePhoto
+        , 5000);
 }
+
 
 // 秒数表示
 function showSecond(){
@@ -133,11 +160,25 @@ function showSecond(){
     re.innerHTML = str;
 }
 
+function changePhoto(){
+    if(z<15){
+        z++;
+        document.getElementById('panel-box').style.backgroundImage  =`url(./css/images/neko${z}.jpg)`;
+    }else if(z == 15){
+        document.getElementById('panel-box').style.backgroundImage  =`url(./css/images/neko${z}.jpg)`;
+        z=1;
+    }
+}
 
 
 function timeResult(clickTime){
-    document.getElementById('clickTime').textContent =  `${clickTime / 2 }` ;
+    document.getElementById('clickTime').textContent =  `${Math.round(clickTime / 2) }` ;
     
+  }
+function changeImg(i){
+    document.getElementById('game3Img').src =  `${imgs3[Math.floor( i % 9 ) ]}` ;
+    // document.getElementById('game3Img').src =  `${imgs3[Math.floor(i % 10) ]}` ;
+    console.log("aaaaa");
   }
 
 
