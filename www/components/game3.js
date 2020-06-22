@@ -33,11 +33,16 @@ const imgs3 = [
 ];
 
 const catComment=[
-    '',
-    '',
-    '',
-    '',
-    '',
+    'a',
+    'a',
+    'a',
+    'a',
+    'a',
+    'a',
+    'a',
+    'a',
+    'a',
+    'a',
 ]
 
 
@@ -177,8 +182,9 @@ function timeResult(clickTime){
   }
 function changeImg(i){
     document.getElementById('game3Img').src =  `${imgs3[Math.floor( i % 9 ) ]}` ;
-    // document.getElementById('game3Img').src =  `${imgs3[Math.floor(i % 10) ]}` ;
-    console.log("aaaaa");
+  }
+function changeCatComment(i){
+    document.getElementById('catComment').textContent =  `${catComment[Math.floor( i % 9 ) ]}` ;
   }
 
 

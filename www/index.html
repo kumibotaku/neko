@@ -184,6 +184,7 @@
           if (page.matches('#tenth-page')) {
             timeResult(countNumber);
             changeImg(countNumber);
+            changeCatComment(countNumber);
         page.querySelector('#resetter').onclick = function(event) {
           // document.querySelector('#navigator').resetToPage();
           location.reload();
@@ -444,7 +445,7 @@
       <div class="content-top" style="text-align: center">
         <h1>クイズ！みりおにゃあ　結果</h1>
         <p>正解は<span style="font-weight: bold;" id="score" ></span>回、不正解は<span style="font-weight: bold;" id="missed"></span>回でした！</p>
-        <img src="css/images/norwegian-forest-cat.png">
+        <img style="width: 80%;" src="css/images/norwegian-forest-cat.png">
         <p>～まめちしき～</p>
         <p style="font-size: 18px;" id="cats-info">猫に関しては知識があまりなくネットからの引用が多いですが、それでも少しでも彼らのことを知っていただければ幸いです。</p>
         <ons-button class="btn" id="pop-button">トップへ戻る</ons-button>
@@ -534,7 +535,7 @@
     <h1>結果発表</h1>
     <div >試行回数：<span id="clickTime" ></span>回 </div>
     <img id="game3Img" src="./css/images/ragamuffin.png" >
-    
+    <p id="catComment" ></p>
     <ons-button class="btn" id="resetter" >topへ</ons-button>
     <!-- <ons-button id="push-button">next</ons-button> -->
   </div>
