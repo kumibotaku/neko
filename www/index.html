@@ -75,17 +75,21 @@
           document.getElementById(`answer${c}`).addEventListener('click',()=>{
             if(a < 4){
               console.log(questionsMillionea[`answers${m[a]}`][0]);
-              if(document.getElementById('answer1').textContent == questionsMillionea[`answers${m[a]}`][0]){
+              if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+              // if(document.getElementById('answer1').textContent == questionsMillionea[`answers${m[a]}`][0]){
                 score++;
                 console.log('scored1');
-              }else if(document.getElementById('answer2').textContent == questionsMillionea[`answers${m[a]}`][0]){
-                score++;
+              }else if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+              // }else if(document.getElementById('answer2').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                // score++;
                 console.log('scored2');
-              }else if(document.getElementById('answer3').textContent == questionsMillionea[`answers${m[a]}`][0]){
-                score++;
+              }else if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+              // }else if(document.getElementById('answer3').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                // score++;
                 console.log('scored3');
-              }else if(document.getElementById('answer4').textContent == questionsMillionea[`answers${m[a]}`][0]){
-                score++;
+              }else if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+              // }else if(document.getElementById('answer4').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                // score++;
                 console.log('scored4');
               }
 
@@ -94,17 +98,21 @@
               console.log('changed');
             }else if(a == 4){
               console.log('last');
-              if(document.getElementById('answer1').textContent == questionsMillionea[`answers${m[a]}`][0]){
+              if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+              // if(document.getElementById('answer1').textContent == questionsMillionea[`answers${m[a]}`][0]){
                 score++;
                 console.log('scored5');
-                }else if(document.getElementById('answer2').textContent == questionsMillionea[`answers${m[a]}`][0]){
-                  score++;
+                }else if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+                // }else if(document.getElementById('answer2').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                  // score++;
                   console.log('scored6');
-                }else if(document.getElementById('answer3').textContent == questionsMillionea[`answers${m[a]}`][0]){
-                  score++;
+                }else if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+                // }else if(document.getElementById('answer3').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                  // score++;
                   console.log('scored7');
-                }else if(document.getElementById('answer4').textContent == questionsMillionea[`answers${m[a]}`][0]){
-                  score++;
+                }else if(document.getElementById(`answer${c}`).textContent == questionsMillionea[`answers${m[a]}`][0]){
+                // }else if(document.getElementById('answer4').textContent == questionsMillionea[`answers${m[a]}`][0]){
+                  // score++;
                   console.log('scored8');
                 }
               clearFlag = true;
@@ -167,13 +175,14 @@
         };
       }  
       // } else if (page.matches('tenth-page')) {
-      //   page.querySelector('#resetter').onclick = function(event) {
-      //     // document.querySelector('#navigator').resetToPage();
-      //     location.reload();
-      //   };
-        
-    //10-1
-      if (page.matches('#tenth-page')) {
+        //   page.querySelector('#resetter').onclick = function(event) {
+          //     // document.querySelector('#navigator').resetToPage();
+          //     location.reload();
+          //   };
+          
+          //10-1
+          if (page.matches('#tenth-page')) {
+            timeResult(countNumber);
         page.querySelector('#resetter').onclick = function(event) {
           // document.querySelector('#navigator').resetToPage();
           location.reload();
@@ -521,6 +530,7 @@
     <div class="content-top" style="text-align: center">
     <p>にゃん経衰弱結果画面</p>
     <h1>結果発表</h1>
+    <div >試行回数：<span id="clickTime" ></span> </div>
     <ons-button class="btn" id="resetter" >topへ</ons-button>
     <!-- <ons-button id="push-button">next</ons-button> -->
   </div>

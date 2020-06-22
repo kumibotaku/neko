@@ -34,22 +34,22 @@ html, body {
   outline: 0;
 }
 #answer1{
-  font-size: 1.1em;
+  font-size: 0.9em;
   vertical-align: middle;
   height: 70px;
 }
 #answer2{
-  font-size: 1.1em;
+  font-size: 0.9em;
   vertical-align: middle;
   height: 70px;
 }
 #answer3{
-  font-size: 1.1em;
+  font-size: 0.9em;
   vertical-align: middle;
   height: 70px;
 }
 #answer4{
-  font-size: 1.1em;
+  font-size: 0.9em;
   vertical-align: middle;
   height: 70px;
 }
@@ -76,9 +76,9 @@ html, body {
 }
 
 /* -------------------- */
-.content-top > img{
-  width: 80%;
-  
+.content-top > #game2Img{
+  width: auto;
+  height: 400px;  
 }
 
 /* .explanations{ 
@@ -557,6 +557,8 @@ header > img{
     height: 480px;
     overflow: hidden;
     background-image: url("./images/american-shorthair.png");
+    background-size: contain;
+    background-repeat: no-repeat;
     display: grid;
     justify-content: center;
     grid-template-rows: repeat(4,120px);

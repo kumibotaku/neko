@@ -55,11 +55,12 @@ var countNumber = 0;
 // クリック時の処理
 function turn(e){
     countNumber ++ ;
+    console.log(countNumber);
     var div = e.target;
     
     // カードのタイマー処理が動作中は return
     if (backTimer) return;
-
+    
     // 裏向きのカードをクリックした場合は数字を表示する
     if (div.innerHTML == ''){
         div.className = 'card';
@@ -71,13 +72,15 @@ function turn(e){
     
     // 1枚目の処理
     if (flgFirst){
+        
         // cardFirst は2枚目の処理のときに使う
         cardFirst = div;
         // フラグ変更
         flgFirst = false;
         
-    // 2枚目の処理
+        // 2枚目の処理
     }else{
+        
         
         // 数字が1枚目と一致する場合
         if (cardFirst.number == div.number){
@@ -90,13 +93,13 @@ function turn(e){
                 backTimer = NaN;
                 
                 if (countUnit == 8){
-                    clearInterval(timer);  // timer終了
-                    
+                    clearInterval(timer);// timer終了
+                    console.log(countNumber);
                     document.getElementById('section6').classList.remove('hidden');  
-                  }
+                }
             }, 500)
-
-        // 一致しない場合
+            
+            // 一致しない場合
         }else{  
             // カードを裏側に戻す
             backTimer = setTimeout(function(){
@@ -120,17 +123,21 @@ function startTimer(){
 
 // 秒数表示
 function showSecond(){
-
+    
     var nowTime = new Date();
     var elapsedTime = Math.floor((nowTime - startTime) / 1000);
     var str = '経過秒数: ' + elapsedTime + '秒';
-
+    
     var re = document.getElementById('result');
+    // console.log(countNumber);
     re.innerHTML = str;
 }
 
 
 
-
+function timeResult(clickTime){
+    document.getElementById('clickTime').textContent =  `${clickTime / 2 }` ;
+    
+  }
 
 

@@ -252,11 +252,13 @@ var random = [0,1,2,3,];//問題のランダム配置
 
 
 m =  shuffle(m);
-random =  shuffle(random);
+// random =  shuffle(random);
 console.log(m);
-console.log(random);
+// console.log(random);
 
 function questionChange(){
+  random =  shuffle(random);
+  console.log(random);
   // console.log(questionsMillionea.text1);
   // var texts = questionsMillionea[`text${a}`];
   document.getElementById('questions2').textContent= questionsMillionea[`text${m[a]}`];
